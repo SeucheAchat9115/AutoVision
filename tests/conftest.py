@@ -1,10 +1,11 @@
 """Basic test configuration for AutoVision."""
 
-import pytest
-from pathlib import Path
-import tempfile
 import shutil
-from typing import Generator
+import tempfile
+from collections.abc import Generator
+from pathlib import Path
+
+import pytest
 
 
 @pytest.fixture
@@ -21,19 +22,9 @@ def temp_dir() -> Generator[Path, None, None]:
 def sample_config() -> dict:
     """Provide a sample configuration for testing."""
     return {
-        "project": {
-            "name": "Test Project",
-            "output_dir": "./test_output"
-        },
-        "youtube": {
-            "keyframe_interval": 30
-        },
+        "project": {"name": "Test Project", "output_dir": "./test_output"},
+        "youtube": {"keyframe_interval": 30},
         "models": {
-            "object_detection": [
-                {
-                    "name": "test_model",
-                    "confidence_threshold": 0.5
-                }
-            ]
-        }
+            "object_detection": [{"name": "test_model", "confidence_threshold": 0.5}]
+        },
     }

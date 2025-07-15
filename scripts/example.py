@@ -14,25 +14,22 @@ def main():
     """Run example AutoVision workflow."""
     print("AutoVision Example")
     print("=" * 50)
-    
+
     # Initialize AutoVision
     av = AutoVision()
     print(f"AutoVision version: {av.get_version()}")
-    
+
     # Example configuration
     config = {
-        "project": {
-            "name": "Example Project",
-            "output_dir": "./example_output"
-        },
-        "youtube": {
-            "keyframe_interval": 30
-        }
+        "project": {"name": "Example Project", "output_dir": "./example_output"},
+        "youtube": {"keyframe_interval": 30},
     }
-    
+
     av_configured = AutoVision(config=config)
-    print(f"Configured AutoVision with project: {av_configured.config['project']['name']}")
-    
+    print(
+        f"Configured AutoVision with project: {av_configured.config['project']['name']}"
+    )
+
     # Example video processing (placeholder)
     test_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     result = av_configured.process_video(test_url)

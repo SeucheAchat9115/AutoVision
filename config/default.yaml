@@ -23,7 +23,7 @@ models:
     - name: "detr-resnet-50"
       confidence_threshold: 0.7
       nms_threshold: 0.5
-  
+
   segmentation:
     enabled: false
     models:
@@ -46,7 +46,7 @@ output:
   include_metadata: true
   include_timestamps: true
   save_keyframes: true
-  
+
 # Logging settings
 logging:
   level: "INFO"

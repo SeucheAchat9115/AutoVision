@@ -27,6 +27,6 @@ def test_autovision_process_video():
     """Test video processing placeholder."""
     av = AutoVision()
     result = av.process_video("https://www.youtube.com/watch?v=test")
-    
+
     assert result["status"] == "placeholder"
     assert result["url"] == "https://www.youtube.com/watch?v=test"
