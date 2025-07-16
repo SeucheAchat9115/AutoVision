@@ -1,12 +1,14 @@
 """Tests for AutoVision core functionality."""
 
+from typing import Any
+
 import pytest
 
 from autovision import AutoVision
 
 
 @pytest.mark.unit
-def test_autovision_init():
+def test_autovision_init() -> None:
     """Test AutoVision initialization."""
     av = AutoVision()
     assert av is not None
@@ -14,14 +16,14 @@ def test_autovision_init():
 
 
 @pytest.mark.unit
-def test_autovision_init_with_config(sample_config):
+def test_autovision_init_with_config(sample_config: dict[str, Any]) -> None:
     """Test AutoVision initialization with configuration."""
     av = AutoVision(config=sample_config)
     assert av.config == sample_config
 
 
 @pytest.mark.unit
-def test_autovision_get_version():
+def test_autovision_get_version() -> None:
     """Test getting AutoVision version."""
     av = AutoVision()
     version = av.get_version()
@@ -29,7 +31,7 @@ def test_autovision_get_version():
 
 
 @pytest.mark.unit
-def test_autovision_process_video():
+def test_autovision_process_video() -> None:
     """Test video processing placeholder."""
     av = AutoVision()
     result = av.process_video("https://www.youtube.com/watch?v=test")
@@ -39,7 +41,7 @@ def test_autovision_process_video():
 
 
 @pytest.mark.unit
-def test_autovision_config_validation(sample_config):
+def test_autovision_config_validation(sample_config: dict[str, Any]) -> None:
     """Test configuration validation."""
     av = AutoVision(config=sample_config)
 
@@ -54,7 +56,7 @@ def test_autovision_config_validation(sample_config):
 
 
 @pytest.mark.unit
-def test_autovision_invalid_config():
+def test_autovision_invalid_config() -> None:
     """Test handling of invalid configuration."""
     invalid_config = {"invalid": "config"}
     av = AutoVision(config=invalid_config)
@@ -64,7 +66,7 @@ def test_autovision_invalid_config():
 
 
 @pytest.mark.unit
-def test_autovision_empty_process_video():
+def test_autovision_empty_process_video() -> None:
     """Test processing empty video URL."""
     av = AutoVision()
     result = av.process_video("")
@@ -75,7 +77,7 @@ def test_autovision_empty_process_video():
 
 @pytest.mark.slow
 @pytest.mark.integration
-def test_autovision_full_pipeline_mock():
+def test_autovision_full_pipeline_mock() -> None:
     """Test full pipeline with mocked components."""
     config = {
         "project": {"name": "Integration Test", "output_dir": "./test_output"},

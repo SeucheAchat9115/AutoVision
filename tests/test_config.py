@@ -1,11 +1,13 @@
 """Tests for configuration functionality."""
 
+from pathlib import Path
+
 import pytest
 import yaml
 
 
 @pytest.mark.unit
-def test_config_file_creation(temp_dir):
+def test_config_file_creation(temp_dir: Path) -> None:
     """Test creating a configuration file."""
     config_file = temp_dir / "config.yaml"
 
@@ -28,7 +30,7 @@ def test_config_file_creation(temp_dir):
 
 
 @pytest.mark.unit
-def test_invalid_yaml_config(temp_dir):
+def test_invalid_yaml_config(temp_dir: Path) -> None:
     """Test handling of invalid YAML configuration."""
     config_file = temp_dir / "invalid_config.yaml"
 
@@ -40,7 +42,7 @@ def test_invalid_yaml_config(temp_dir):
 
 
 @pytest.mark.unit
-def test_empty_config_file(temp_dir):
+def test_empty_config_file(temp_dir: Path) -> None:
     """Test handling of empty configuration file."""
     config_file = temp_dir / "empty_config.yaml"
     config_file.write_text("")
@@ -52,7 +54,7 @@ def test_empty_config_file(temp_dir):
 
 
 @pytest.mark.unit
-def test_config_with_comments(temp_dir):
+def test_config_with_comments(temp_dir: Path) -> None:
     """Test configuration file with comments."""
     config_file = temp_dir / "commented_config.yaml"
 

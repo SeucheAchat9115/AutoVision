@@ -1,6 +1,7 @@
 """Tests for CLI functionality."""
 
 import contextlib
+from pathlib import Path
 from unittest.mock import patch
 
 import pytest
@@ -9,7 +10,7 @@ from autovision.cli import main
 
 
 @pytest.mark.unit
-def test_cli_main_help():
+def test_cli_main_help() -> None:
     """Test CLI help command."""
     with patch("sys.argv", ["autovision", "--help"]):
         with pytest.raises(SystemExit) as exc_info:
@@ -18,7 +19,7 @@ def test_cli_main_help():
 
 
 @pytest.mark.unit
-def test_cli_main_version():
+def test_cli_main_version() -> None:
     """Test CLI version command."""
     with patch("sys.argv", ["autovision", "--version"]):
         with pytest.raises(SystemExit) as exc_info:
@@ -27,7 +28,7 @@ def test_cli_main_version():
 
 
 @pytest.mark.unit
-def test_cli_main_no_args():
+def test_cli_main_no_args() -> None:
     """Test CLI with no arguments."""
     with patch("sys.argv", ["autovision"]), contextlib.suppress(SystemExit):
         # Should not crash, might show help or process with defaults
@@ -35,7 +36,7 @@ def test_cli_main_no_args():
 
 
 @pytest.mark.integration
-def test_cli_main_with_config(temp_dir):
+def test_cli_main_with_config(temp_dir: Path) -> None:
     """Test CLI with configuration file."""
     config_file = temp_dir / "test_config.yaml"
     config_file.write_text("""

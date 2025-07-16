@@ -4,6 +4,7 @@ import shutil
 import tempfile
 from collections.abc import Generator
 from pathlib import Path
+from typing import Any
 from unittest.mock import Mock
 
 import pytest
@@ -20,7 +21,7 @@ def temp_dir() -> Generator[Path, None, None]:
 
 
 @pytest.fixture
-def sample_config() -> dict:
+def sample_config() -> dict[str, Any]:
     """Provide a sample configuration for testing."""
     return {
         "project": {"name": "Test Project", "output_dir": "./test_output"},
@@ -32,7 +33,7 @@ def sample_config() -> dict:
 
 
 @pytest.fixture
-def mock_youtube_video() -> dict:
+def mock_youtube_video() -> dict[str, Any]:
     """Mock YouTube video metadata for testing."""
     return {
         "id": "test_video_id",
@@ -59,7 +60,7 @@ def mock_model() -> Mock:
 
 
 @pytest.fixture
-def sample_frame_data() -> dict:
+def sample_frame_data() -> dict[str, Any]:
     """Sample frame data for testing."""
     return {
         "timestamp": 30.0,
