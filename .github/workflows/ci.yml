@@ -203,7 +203,7 @@ jobs:
 
       - name: Run safety check
         run: |
-          uv run pip list --format=json | uv run safety check --stdin --json
+          uv run pip list --format=json | uv run --with safety safety check --stdin --json
 
       - name: Run semgrep security scan
         if: github.event_name == 'push'
