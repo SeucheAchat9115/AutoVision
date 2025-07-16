@@ -1,0 +1,73 @@
+# Test Workflow for Pull Requests
+name: Test PR
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+    types: [opened, synchronize, reopened]
+
+env:
+  PYTHON_VERSION: "3.11"
+  UV_VERSION: "0.4.0"
+
+jobs:
+  # Quick tests for PR validation
+  quick-test:
+    name: Quick Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ env.UV_VERSION }}
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras --dev
+
+      - name: Run quick linting
+        run: |
+          uv run ruff check . --select=E,W,F --output-format=github
+
+      - name: Run unit tests only
+        run: |
+          uv run pytest tests/ -m "unit" --tb=short --maxfail=5
+
+  # Full test suite (only on labeled PRs or push to main)
+  full-test:
+    name: Full Test Suite
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'full-test') || github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: ${{ env.UV_VERSION }}
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          uv sync --all-extras --dev
+
+      - name: Run full test suite
+        run: |
+          uv run pytest tests/ --cov=autovision --cov-report=xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        if: success()
+        with:
+          file: ./coverage.xml

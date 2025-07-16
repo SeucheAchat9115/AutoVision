@@ -4,6 +4,7 @@ import shutil
 import tempfile
 from collections.abc import Generator
 from pathlib import Path
+from unittest.mock import Mock
 
 import pytest
 
@@ -27,4 +28,43 @@ def sample_config() -> dict:
         "models": {
             "object_detection": [{"name": "test_model", "confidence_threshold": 0.5}]
         },
+    }
+
+
+@pytest.fixture
+def mock_youtube_video() -> dict:
+    """Mock YouTube video metadata for testing."""
+    return {
+        "id": "test_video_id",
+        "title": "Test Video",
+        "duration": 120,
+        "url": "https://www.youtube.com/watch?v=test_video_id",
+        "thumbnail": "https://example.com/thumbnail.jpg",
+    }
+
+
+@pytest.fixture
+def mock_model() -> Mock:
+    """Mock ML model for testing."""
+    model = Mock()
+    model.predict.return_value = [
+        {
+            "bbox": [10, 10, 50, 50],
+            "confidence": 0.85,
+            "class": "person",
+            "class_id": 0,
+        }
+    ]
+    return model
+
+
+@pytest.fixture
+def sample_frame_data() -> dict:
+    """Sample frame data for testing."""
+    return {
+        "timestamp": 30.0,
+        "frame_number": 900,
+        "width": 1920,
+        "height": 1080,
+        "format": "RGB",
     }
