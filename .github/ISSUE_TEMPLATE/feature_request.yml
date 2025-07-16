@@ -1,0 +1,216 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for AutoVision
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for suggesting a feature! ✨
+
+        Please fill out this template to help us understand your feature request.
+
+        **Before submitting:**
+        - [ ] Search existing issues to avoid duplicates
+        - [ ] Check the roadmap to see if it's already planned
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: ✨ Feature Description
+      description: A clear and concise description of the feature you'd like to see
+      placeholder: Describe the feature you want...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: 🎯 Problem Statement
+      description: What problem does this feature solve? What's the motivation?
+      placeholder: |
+        - What challenge are you facing?
+        - What use case does this address?
+        - How would this improve AutoVision?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: How would you like this feature to be implemented?
+      placeholder: |
+        Describe your ideal solution:
+        - What should the interface look like?
+        - How should it behave?
+        - What configuration options should it have?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternatives Considered
+      description: What alternative solutions or features have you considered?
+      placeholder: |
+        - Alternative approach 1
+        - Alternative approach 2
+        - Why these alternatives don't work as well
+    validations:
+      required: false
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: 📂 Feature Category
+      description: What area of AutoVision does this feature relate to?
+      options:
+        - Core Processing Engine
+        - Model Integration
+        - Video Processing
+        - Configuration System
+        - CLI Interface
+        - GUI/Streamlit Interface
+        - Export Formats
+        - Ensemble Methods
+        - Performance/Optimization
+        - Documentation
+        - Testing
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 🚨 Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low (Nice to have)
+        - Medium (Would improve workflow)
+        - High (Blocking current work)
+        - Critical (Essential for adoption)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: 👤 User Type
+      description: What type of user would benefit from this feature?
+      options:
+        - End User (CLI/GUI)
+        - Developer (API/Library)
+        - Researcher (Academic)
+        - Enterprise User
+        - All Users
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: 🎭 Use Cases
+      description: Provide specific examples of how this feature would be used
+      placeholder: |
+        **Use Case 1:**
+        - As a [user type], I want to [action] so that [benefit]
+
+        **Use Case 2:**
+        - When [situation], I need [functionality] to [outcome]
+
+        **Example Workflow:**
+        1. Step 1
+        2. Step 2
+        3. Expected result
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: 🛠️ Implementation Ideas
+      description: |
+        Technical suggestions for implementation (optional)
+        Only fill this out if you have specific technical knowledge
+      placeholder: |
+        - API design suggestions
+        - Technology recommendations
+        - Architecture considerations
+        - Performance considerations
+    validations:
+      required: false
+
+  - type: textarea
+    id: example-config
+    attributes:
+      label: ⚙️ Example Configuration
+      description: If this feature requires configuration, show an example
+      render: yaml
+      placeholder: |
+        # Example configuration for the new feature
+        new_feature:
+          enabled: true
+          option1: "value1"
+          option2: 42
+    validations:
+      required: false
+
+  - type: textarea
+    id: example-usage
+    attributes:
+      label: 💻 Example Usage
+      description: Show how you'd like to use this feature
+      render: python
+      placeholder: |
+        # Example code showing how the feature would be used
+        from autovision import AutoVision
+
+        av = AutoVision(config)
+        result = av.new_feature(parameters)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: breaking-changes
+    attributes:
+      label: 💥 Breaking Changes
+      description: Would this feature require breaking changes to existing APIs?
+      options:
+        - No breaking changes
+        - Minor breaking changes (acceptable)
+        - Major breaking changes (needs careful consideration)
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 Additional Context
+      description: Add any other context, screenshots, or references
+      placeholder: |
+        - Links to similar features in other tools
+        - Screenshots or mockups
+        - Research papers or articles
+        - Related discussions
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 📋 Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues for duplicates
+          required: true
+        - label: I have checked the roadmap to see if this is already planned
+          required: true
+        - label: I have provided clear use cases and examples
+          required: true
+        - label: I understand this is a feature request, not a bug report
+          required: true

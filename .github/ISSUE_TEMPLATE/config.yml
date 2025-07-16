@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/SeucheAchat9115/AutoVision/discussions
+    about: For general questions, ideas, and community discussions
+  - name: 📖 Documentation
+    url: https://github.com/SeucheAchat9115/AutoVision/blob/main/README.md
+    about: Check our comprehensive documentation and guides
+  - name: 📧 Contact Team
+    url: mailto:team@autovision.dev
+    about: For private inquiries and partnership discussions

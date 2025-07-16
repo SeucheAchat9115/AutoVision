@@ -1,0 +1,153 @@
+name: ❓ Question
+description: Ask a question about using AutoVision
+title: "[QUESTION] "
+labels: ["question", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome! We're here to help! ❓
+
+        Please use this template for questions about using AutoVision.
+
+        **Before asking:**
+        - [ ] Check the README.md and documentation
+        - [ ] Search existing issues and discussions
+        - [ ] Try the examples in the repository
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: 📂 Question Category
+      description: What area is your question about?
+      options:
+        - Installation and Setup
+        - Configuration
+        - Usage (CLI)
+        - Usage (Python API)
+        - Usage (GUI/Streamlit)
+        - Model Integration
+        - Video Processing
+        - Output Formats
+        - Performance
+        - Troubleshooting
+        - Best Practices
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: ❓ Your Question
+      description: What would you like to know?
+      placeholder: Ask your question in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: 🔍 What You've Tried
+      description: What have you already tried or researched?
+      placeholder: |
+        - Documentation sections you've read
+        - Commands or code you've tried
+        - Error messages you've encountered
+        - Solutions you've attempted
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 🎯 Context and Goal
+      description: What are you trying to accomplish?
+      placeholder: |
+        - What's your overall goal?
+        - What use case are you working on?
+        - What type of videos are you processing?
+        - What kind of analysis do you need?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-setup
+    attributes:
+      label: ⚙️ Current Setup
+      description: Describe your current setup and configuration
+      render: yaml
+      placeholder: |
+        # Your current configuration
+        project:
+          name: "my_project"
+        models:
+          object_detection:
+            - "facebook/detr-resnet-50"
+        # Include relevant parts of your setup
+    validations:
+      required: false
+
+  - type: dropdown
+    id: experience-level
+    attributes:
+      label: 📊 Experience Level
+      description: How familiar are you with AutoVision and computer vision?
+      options:
+        - Beginner (new to computer vision)
+        - Intermediate (some CV experience)
+        - Advanced (experienced with CV tools)
+        - Expert (developing CV solutions)
+    validations:
+      required: false
+
+  - type: input
+    id: autovision-version
+    attributes:
+      label: 📦 AutoVision Version
+      description: What version of AutoVision are you using?
+      placeholder: e.g., 0.1.0
+    validations:
+      required: false
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: 🖥️ Environment
+      description: What environment are you using?
+      options:
+        - Local development
+        - Docker container
+        - Cloud platform (AWS/GCP/Azure)
+        - Jupyter notebook
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 📝 Additional Information
+      description: Any other information that might be helpful
+      placeholder: |
+        - Screenshots
+        - Code snippets
+        - Error messages
+        - Links to related resources
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 📋 Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: I have read the relevant documentation
+          required: true
+        - label: This is a question, not a bug report or feature request
+          required: true

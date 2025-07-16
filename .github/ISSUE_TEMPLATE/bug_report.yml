@@ -1,0 +1,163 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve AutoVision
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for reporting a bug! 🐛
+
+        Please fill out this template to help us understand and reproduce the issue.
+
+        **Before submitting:**
+        - [ ] Search existing issues to avoid duplicates
+        - [ ] Update to the latest version and test again
+        - [ ] Check the documentation for known limitations
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 🐛 Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 🔄 Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: ✅ Expected Behavior
+      description: A clear and concise description of what you expected to happen
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: ❌ Actual Behavior
+      description: A clear and concise description of what actually happened
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 🖥️ Operating System
+      description: What operating system are you using?
+      options:
+        - Ubuntu/Debian
+        - Windows
+        - macOS
+        - CentOS/RHEL
+        - Other Linux
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: 🐍 Python Version
+      description: What version of Python are you using?
+      placeholder: e.g., 3.11.5
+    validations:
+      required: true
+
+  - type: input
+    id: autovision-version
+    attributes:
+      label: 📦 AutoVision Version
+      description: What version of AutoVision are you using?
+      placeholder: e.g., 0.1.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gpu
+    attributes:
+      label: 🎮 GPU Information
+      description: What GPU are you using (if any)?
+      options:
+        - No GPU (CPU only)
+        - NVIDIA RTX 40 Series
+        - NVIDIA RTX 30 Series
+        - NVIDIA RTX 20 Series
+        - NVIDIA GTX Series
+        - AMD GPU
+        - Intel GPU
+        - Apple Silicon (M1/M2/M3)
+        - Other/Unknown
+    validations:
+      required: false
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: ⚙️ Configuration
+      description: Relevant parts of your config.yaml or configuration
+      render: yaml
+      placeholder: |
+        # Include relevant config.yaml sections
+        project:
+          name: "my_project"
+        models:
+          object_detection:
+            - "facebook/detr-resnet-50"
+    validations:
+      required: false
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: 📋 Error Output
+      description: Full error traceback or output
+      render: text
+      placeholder: Paste the complete error message and traceback here
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📝 Additional Context
+      description: Add any other context about the problem here
+      placeholder: |
+        - Screenshots
+        - Related issues
+        - Workarounds tried
+        - Environment details
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 📋 Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues for duplicates
+          required: true
+        - label: I am using the latest version of AutoVision
+          required: true
+        - label: I have included all relevant information
+          required: true
+        - label: I have included configuration and error output (if applicable)
+          required: false

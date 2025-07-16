@@ -1,0 +1,143 @@
+name: 📚 Documentation Issue
+description: Report issues with documentation or request documentation improvements
+title: "[DOCS] "
+labels: ["documentation", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for helping improve our documentation! 📚
+
+        Please fill out this template to help us understand the documentation issue.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: 📋 Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - Missing documentation
+        - Incorrect documentation
+        - Outdated documentation
+        - Unclear/confusing documentation
+        - Documentation improvement suggestion
+        - New documentation request
+    validations:
+      required: true
+
+  - type: dropdown
+    id: doc-location
+    attributes:
+      label: 📍 Documentation Location
+      description: Where is the documentation issue located?
+      options:
+        - README.md
+        - CONTRIBUTING.md
+        - API Documentation/Docstrings
+        - Configuration Documentation
+        - Installation Instructions
+        - Usage Examples
+        - Architecture Documentation
+        - Testing Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: doc-url
+    attributes:
+      label: 🔗 Documentation URL/File
+      description: Specific file or URL where the issue is located
+      placeholder: e.g., README.md, src/autovision/core.py, https://...
+    validations:
+      required: false
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: 📝 Issue Description
+      description: Describe the documentation issue in detail
+      placeholder: |
+        - What is wrong or missing?
+        - What information are you looking for?
+        - What part is confusing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-content
+    attributes:
+      label: 📄 Current Content
+      description: Copy the current documentation content that has issues (if applicable)
+      render: markdown
+      placeholder: Paste the current documentation content here...
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggested-content
+    attributes:
+      label: ✏️ Suggested Content
+      description: Suggest how the documentation should be improved
+      render: markdown
+      placeholder: |
+        Provide your suggested content or improvements:
+        - What should be added?
+        - How should it be rewritten?
+        - What examples would help?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: user-level
+    attributes:
+      label: 👤 Target User Level
+      description: What user level is this documentation for?
+      options:
+        - Beginner (new to AutoVision)
+        - Intermediate (familiar with basics)
+        - Advanced (experienced users)
+        - Developer (contributing to project)
+        - All levels
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: 🎯 Use Case
+      description: Describe the specific use case or scenario where this documentation is needed
+      placeholder: |
+        - What were you trying to accomplish?
+        - What workflow were you following?
+        - What questions did you have?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 📝 Additional Context
+      description: Any additional context that would help improve the documentation
+      placeholder: |
+        - Screenshots of confusing interfaces
+        - Examples of what you expected vs. what you found
+        - Links to related documentation
+        - Similar documentation in other projects
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 📋 Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues for duplicates
+          required: true
+        - label: I have checked the current documentation thoroughly
+          required: true
+        - label: I have provided clear description of the issue
+          required: true
