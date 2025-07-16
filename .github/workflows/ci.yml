@@ -170,9 +170,13 @@ jobs:
       - name: Set up Python
         run: uv python install ${{ env.PYTHON_VERSION }}
 
+      - name: Install build dependencies
+        run: |
+          uv sync --all-extras --dev
+
       - name: Build package
         run: |
-          uv build
+          uv run python -m build
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
