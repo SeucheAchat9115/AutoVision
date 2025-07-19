@@ -1,54 +1,11 @@
-# AutoVision Configuration Template
-
-# Project settings
 project:
   name: "AutoVision Analysis"
-  description: "Automated video analysis project"
-  output_dir: "./output"
-  temp_dir: "./temp"
 
-# YouTube settings
-youtube:
-  api_key: null  # Set your YouTube API key here
-  max_video_duration: 3600  # Maximum video duration in seconds (1 hour)
-  keyframe_interval: 30  # Extract keyframes every N seconds
-  video_quality: "720p"  # Preferred video quality
-
-# Model settings
-models:
-  object_detection:
-    - name: "yolov8n"
-      confidence_threshold: 0.5
-      nms_threshold: 0.4
-    - name: "detr-resnet-50"
-      confidence_threshold: 0.7
-      nms_threshold: 0.5
-
-  segmentation:
-    enabled: false
-    models:
-      - name: "mask2former"
-        confidence_threshold: 0.6
-
-# Processing settings
-processing:
-  batch_size: 4
-  max_workers: 2
-  use_gpu: true
-  cache_models: true
-  cache_dir: "./cache"
-
-# Output settings
-output:
-  formats:
-    - "coco"
-    - "yolo"
-  include_metadata: true
-  include_timestamps: true
-  save_keyframes: true
-
-# Logging settings
-logging:
-  level: "INFO"
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "./logs/autovision.log"
+input:
+  youtube:
+    video_urls:
+      - "https://www.youtube.com/watch?v=example1"
+      - "https://www.youtube.com/watch?v=example2"
+    download_options:
+      quality: "best"
+      format: "mp4"
