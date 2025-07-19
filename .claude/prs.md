@@ -1,153 +1,183 @@
-Stage 1: Core MVP & Foundational Setup 📦
+# 📦 AutoVision Project PR Plan (Restructured for CI/CD, Packaging First)
 
-Development & Environment
-	1.	Project Initialization
-	•	PR: Setup project repository with uv venv and .gitignore.
-	2.	Code Quality & Pre-commits
-	•	PR: Add pre-commit configuration with ruff.
-	•	PR: Integrate mypy for static type checking.
-	3.	Testing Framework
-	•	PR: Setup pytest and basic test folder structure.
+---
 
-Key Features
-	4.	Batch Data Input
-	•	PR: Implement parsing YouTube URLs from a config file (config.yaml).
-	5.	CLI with Argparse
-	•	PR: Add argparse-based CLI accepting --config path.
-	6.	Hugging Face Model Integration
-	•	PR: Integrate model loading from Hugging Face (object detection only).
-	7.	Keyframe Extraction
-	•	PR: Implement timestamp-based keyframe extraction (configurable frequency).
-	8.	Configuration File
-	•	PR: Define config.yaml schema and loader with validation.
-	9.	Output Format
-	•	PR: Implement COCO JSON writer including predictions + timestamp metadata.
-	10.	Error Handling
-	•	PR: Centralized error handling for:
-	•	YouTube API errors
-	•	Video unavailability
-	•	Model inference failure
+## 🔵 Phase 1: CI/CD, Packaging, and Deployment Foundations
 
-Testing
-	11.	Unit Tests
-	•	PR: Unit tests for keyframe extraction reproducibility.
-	12.	Integration Tests
-	•	PR: Model loading and inference integration tests.
-	13.	CLI Interface Testing
-	•	PR: CLI execution test with dummy config and dry run.
+### PR1: Project Initialization
+- Initialize repo, set up `uv venv`, `.gitignore`, base Python package structure.
+- ✅ **Test:** Project installation, `python -m autovision` dry run.
 
-⸻
+### PR2: Code Quality Setup
+- Add pre-commit hooks with `ruff` for linting.
+- ✅ **Test:** Lint sample files, CI fails on lint errors.
 
-Stage 2: Interactive App & Model Expansion 🖥️
+### PR3: Static Typing with `mypy`
+- Integrate `mypy` in pre-commit and CI.
+- ✅ **Test:** Introduce typed stub, validate type-checking via CI.
 
-Development & CI Pipeline
-	14.	Continuous Integration (CI)
-	•	PR: GitHub Actions for tests, linting, typing checks.
-	15.	Enhanced Testing
-	•	PR: Expand test coverage for planned GUI and multi-task support.
+### PR4: Testing Framework Setup
+- Setup `pytest` with base test structure.
+- ✅ **Test:** Basic "test passes" example, CI runs `pytest` successfully.
 
-Key Features
-	16.	GUI with Streamlit
-	•	PR: Basic Streamlit app scaffolding to trigger core pipeline.
-	17.	Configuration Management
-	•	PR: Implement load, display, edit, and export of config.yaml via UI.
-	18.	Multi-Task Support
-	•	PR: Add semantic segmentation model support.
-	19.	Label Visualization
-	•	PR: Display frames with prediction overlays in GUI.
-	20.	Model Switching
-	•	PR: Implement model selection dropdown for different Hugging Face models.
-	21.	Export Format Options
-	•	PR: Enable export in COCO, YOLO, Pascal VOC, and custom formats.
+### PR5: Initial GitHub Actions CI
+- Add GitHub Actions to run: lint, mypy, pytest on PRs.
+- ✅ **Test:** Deliberately failing test case to validate CI failure.
 
-Testing
-	22.	Streamlit Component Tests
-	•	PR: Test Streamlit workflows and UI elements.
-	23.	Config File Validation Tests
-	•	PR: Validate integrity and completeness of config files.
-	24.	Multi-format Export Tests
-	•	PR: Validate each export format produces correct outputs.
-	25.	Multi-task Model Inference Testing
-	•	PR: Test object detection vs. segmentation model outputs.
+### PR6: CD Pipeline for PyPI Publishing
+- Add GitHub Actions for PyPI deployment on version tags.
+- ✅ **Test:** Mock release version tag, dry run PyPI packaging.
 
-⸻
+### PR7: Dockerization
+- Add `Dockerfile` to containerize CLI and future app.
+- ✅ **Test:** Docker build and basic CLI execution inside container.
 
-Stage 3: Model Ensemble & Public Packaging ✍️
+### PR8: Streamlit Deployment Setup
+- Initial dummy Streamlit app and deployment pipeline to Streamlit Cloud.
+- ✅ **Test:** Confirm dummy app deploys successfully.
 
-Packaging & CD
-	26.	Automatic PyPI Deployment
-	•	PR: CD pipeline for PyPI deployment on tagged releases.
-	27.	Package Distribution
-	•	PR: Ensure pip-installable autovision-tool with entry points.
+---
 
-Key Features
-	28.	Multi-Model Ensemble
-	•	PR: Implement inference with multiple models in parallel.
-	29.	Model Agreement Analysis
-	•	PR: Compute agreement scores across models’ predictions.
-	30.	Fine-tuned Model Support
-	•	PR: Enable loading custom fine-tuned models.
-	31.	Advanced Configuration
-	•	PR: Support model-specific parameters and ensemble weights in config.
-	32.	Export Versioning
-	•	PR: Auto-increment output versioning (export_v3.json).
-	33.	Confidence Scoring
-	•	PR: Add confidence scores per prediction.
+## 🔵 Phase 2: Core CLI, Inference, and Outputs
 
-Testing
-	34.	Ensemble Prediction Tests
-	•	PR: Validate ensemble inference accuracy.
-	35.	Model Agreement Validation
-	•	PR: Unit tests for agreement metrics.
-	36.	Fine-tuned Model Tests
-	•	PR: Test inference with custom models.
-	37.	Installation/Distribution Tests
-	•	PR: Verify correct pip install, CLI entry points, and minimal examples.
+### PR9: Configuration Loader
+- Load and validate `config.yaml`.
+- ✅ **Test:** Valid/invalid config files, validation errors.
 
-⸻
+### PR10: Batch Data Input
+- Parse and store YouTube URLs from config.
+- ✅ **Test:** Config with multiple URLs parsed correctly.
 
-Stage 4: Advanced Ensemble Platform & Deployment 🌐
+### PR11: CLI with Argparse
+- CLI entrypoint (`autovision --config config.yaml`).
+- ✅ **Test:** CLI runs with valid config, errors on missing/invalid config.
 
-Deployment
-	38.	Containerization
-	•	PR: Dockerize complete app including GUI + backend.
-	39.	Streamlit Cloud Deployment
-	•	PR: Deploy to Streamlit Cloud, with instructions.
+### PR12: Hugging Face Model Integration
+- Load pre-trained object detection model from Hugging Face.
+- ✅ **Test:** Model loads, inference on dummy data, mock network failure.
 
-Key Features
-	40.	Voting-based Consensus Methods
-	•	PR: Majority voting, weighted voting, confidence-based methods.
-	41.	Non-Maximum Suppression (NMS) Across Models
-	•	PR: Implement NMS across ensemble outputs.
-	42.	Ensemble Uncertainty Quantification
-	•	PR: Compute uncertainty metrics from ensemble predictions.
-	43.	Model Performance Dashboard
-	•	PR: Add Streamlit dashboard for per-model metrics and visualizations.
-	44.	Batch Processing Interface
-	•	PR: GUI component for batch processing + progress bar.
-	45.	Advanced Export Options
-	•	PR: Export ensemble predictions, individual model outputs, uncertainty maps.
-	46.	Custom Model Integration
-	•	PR: GUI + backend to upload and use custom-trained models.
+### PR13: Keyframe Extraction
+- Timestamp-based keyframe sampling with configurable frequency.
+- ✅ **Test:** Deterministic outputs across runs, edge cases (empty video).
 
-Database Schema
-	47.	Database: Projects Table
-	•	PR: Implement Projects schema.
-	48.	Database: Models Table
-	•	PR: Implement Models registry with metadata.
-	49.	Database: Predictions Table
-	•	PR: Implement storage of predictions with confidence.
-	50.	Database: Ensembles Table
-	•	PR: Store merged predictions and agreement.
-	51.	Database: Frames Table
-	•	PR: Store metadata for URL + timestamps.
+### PR14: Model Inference
+- Run detection model on extracted keyframes (timestamps).
+- ✅ **Test:** Inference outputs with dummy frames, failure scenarios.
 
-Testing
-	52.	Ensemble Algorithm Performance
-	•	PR: Tests for ensemble methods, NMS, uncertainty.
-	53.	Model Performance Tracking
-	•	PR: Tests to validate metrics computation per model.
-	54.	Batch Processing Workflow Tests
-	•	PR: Validate correctness of batch processing.
-	55.	Custom Model Upload Tests
-	•	PR: Tests for uploading and running custom models.
+### PR15: COCO JSON Output Writer
+- Export predictions + timestamps into COCO JSON format.
+- ✅ **Test:** Validate JSON schema correctness.
+
+### PR16: Unified Error Handling
+- Standard error handling for:
+  - YouTube API limits
+  - Model inference errors
+  - Network issues
+- ✅ **Test:** Mock errors for each scenario, ensure graceful failure.
+
+---
+
+## 🔵 Phase 3: Enhanced Testing & Multi-task Features
+
+### PR17: CLI Interface Tests
+- Comprehensive tests for CLI argument handling and execution paths.
+- ✅ **Test:** Various CLI args, invalid paths, dry run mode.
+
+### PR18: Semantic Segmentation Model Support
+- Add Hugging Face segmentation model option.
+- ✅ **Test:** Segmentation output shape, config switching between tasks.
+
+### PR19: Export Format Options
+- Add YOLO, Pascal VOC, custom format exports.
+- ✅ **Test:** Validate output files for all formats.
+
+---
+
+## 🔵 Phase 4: GUI & Interactive App
+
+### PR20: Streamlit App Core
+- Basic app to trigger pipeline via GUI.
+- ✅ **Test:** End-to-end test with sample video → predictions.
+
+### PR21: Configuration Management in GUI
+- Load, display, edit, save `config.yaml`.
+- ✅ **Test:** Simulate user interactions and config file integrity.
+
+### PR22: Label Visualization
+- Overlay bounding boxes/segmentations on frames in GUI.
+- ✅ **Test:** Render outputs for known predictions.
+
+### PR23: Model Switching via GUI
+- Dropdown to select different models.
+- ✅ **Test:** Confirm correct model loads, inference works post-switch.
+
+---
+
+## 🔵 Phase 5: Ensemble, Confidence, and Advanced Features
+
+### PR24: Multi-Model Ensemble
+- Run multiple models in parallel, aggregate outputs.
+- ✅ **Test:** Parallel inference works, outputs combined.
+
+### PR25: Agreement Analysis
+- Compare outputs across models for agreement metrics.
+- ✅ **Test:** Mock predictions to validate metric correctness.
+
+### PR26: Confidence Scoring
+- Include per-prediction confidence across models.
+- ✅ **Test:** Scores computed correctly for known outputs.
+
+### PR27: Fine-tuned Model Support
+- Load custom user-provided fine-tuned models.
+- ✅ **Test:** Model path from config, inference runs.
+
+### PR28: Advanced Config for Ensembles
+- Add weights, parameters per model in config.
+- ✅ **Test:** Weighted ensemble calculations.
+
+### PR29: Export Versioning
+- Auto-increment export filenames (e.g. export_v3.json).
+- ✅ **Test:** Ensure unique filenames per export run.
+
+---
+
+## 🔵 Phase 6: Deployment Finalization & Monitoring
+
+### PR30: Performance Dashboard
+- Streamlit dashboard showing per-model accuracy, agreement, performance visuals.
+- ✅ **Test:** Load metrics from mock data, visualize correctly.
+
+### PR31: Batch Processing Interface
+- GUI for submitting batch jobs, track progress.
+- ✅ **Test:** Simulated batch with status tracking.
+
+### PR32: Sophisticated Ensemble Methods
+- Add voting consensus, NMS, uncertainty quantification.
+- ✅ **Test:** Unit tests for each ensemble method.
+
+### PR33: Custom Model Integration in GUI
+- UI + backend for uploading custom models into the pipeline.
+- ✅ **Test:** Uploaded model path works, inference validated.
+
+### PR34: Full Docker Build with GUI + Backend
+- Docker image with complete app stack.
+- ✅ **Test:** CI build of Docker image, functional tests inside container.
+
+### PR35: Database Schema Implementation
+- Add Projects, Models, Predictions, Ensembles, Frames schema.
+- ✅ **Test:** CRUD operations, data integrity.
+
+### PR36: Monitoring & Logging
+- Centralized logging, error reporting, performance monitoring.
+- ✅ **Test:** Mock failures produce logs, monitoring metrics captured.
+
+---
+
+## ✅ Bonus: Standard PR Checklist Template
+
+- [ ] Feature implementation
+- [ ] Corresponding unit tests
+- [ ] CI passing (lint, mypy, tests)
+- [ ] Documentation (docstrings, usage if applicable)
+- [ ] Manual verification if UI/CLI
+- [ ] Update changelog
